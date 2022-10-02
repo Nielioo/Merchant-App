@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
               flex: 1,
               child: ListView.separated(
                 padding: EdgeInsets.only(left: 8, right: 8),
-                physics: BouncingScrollPhysics(),
+                // physics: BouncingScrollPhysics(),
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 itemCount: widget.item.imagePreviewPathList.length,
@@ -127,7 +127,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Expanded(
                         child: SingleChildScrollView(
-                      physics: BouncingScrollPhysics(),
+                      // physics: BouncingScrollPhysics(),
                       child: SafeArea(
                         child: Text(
                           "Produk hand made, kondisi sesuai foto."
