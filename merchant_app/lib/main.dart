@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:merchant_app/model/item.dart';
+import 'package:merchant_app/theme/color.dart';
 import 'package:merchant_app/views/pages.dart';
 
 void main() {
@@ -13,6 +14,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primaryColor: primaryColor,
+      ),
       home: HomePage(
         item: items.first,
       ),

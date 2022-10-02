@@ -16,7 +16,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Details"),
+        title: Text(
+          "Item Details",
+          style: TextStyle(
+              fontFamily: "Nunito",
+              fontWeight: FontWeight.bold,
+              color: Colors.black),
+        ),
+        backgroundColor: primaryColor,
       ),
       body: Container(
         width: double.infinity,
@@ -39,10 +46,18 @@ class _HomePageState extends State<HomePage> {
               child: Stack(
                 alignment: Alignment.topRight,
                 children: [
-                  Image(
-                    image: AssetImage(widget.item.imageBannerPath),
-                    fit: BoxFit.cover,
+                  Container(
+                    margin: EdgeInsets.only(bottom: 8),
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                      image: AssetImage(widget.item.imageBannerPath),
+                      fit: BoxFit.cover,
+                    )),
                   ),
+                  // Image(
+                  //   image: AssetImage(widget.item.imageBannerPath),
+                  //   fit: BoxFit.cover,
+                  // ),
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 16, 16, 0),
                     child: Material(
@@ -112,6 +127,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Expanded(
                         child: SingleChildScrollView(
+                      physics: BouncingScrollPhysics(),
                       child: SafeArea(
                         child: Text(
                           "Produk hand made, kondisi sesuai foto."
@@ -128,7 +144,8 @@ class _HomePageState extends State<HomePage> {
                           "\nInazuma: frame 5x6 cm, gem diameter 3 cm"
                           "\n"
                           "\n● NOTE ●"
-                          "\nFoto diambil di bawah sinar matahari dan tidak diedit, namun tetap mungkin ada sedikit perbedaan warna dengan aslinya. Preorder dicantumkan 10 hari agar bisa digabung dengan barang lain. Waktu pengerjaan 1-3 hari, jika lebih awal selesai akan langsung dikirim.",
+                          "\nFoto diambil di bawah sinar matahari dan tidak diedit, namun tetap mungkin ada sedikit perbedaan warna dengan aslinya. Preorder dicantumkan 10 hari agar bisa digabung dengan barang lain. Waktu pengerjaan 1-3 hari, jika lebih awal selesai akan langsung dikirim."
+                          "\n\n(Source: Qianxi1128)",
                           style: TextStyle(fontFamily: "Nunito", fontSize: 14),
                         ),
                       ),

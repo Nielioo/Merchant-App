@@ -14,5 +14,8 @@ var items = [
         '${Path.images}/monstadt_vision_02.png',
         '${Path.images}/monstadt_vision_03.png',
         '${Path.images}/monstadt_vision_04.png',
+        '${Path.images}/monstadt_vision_05.png',
+        '${Path.images}/monstadt_vision_06.png',
+        '${Path.images}/monstadt_vision_07.png',
       ])
 ];
