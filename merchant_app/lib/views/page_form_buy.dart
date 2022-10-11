@@ -194,7 +194,14 @@ class _FormBuyPageState extends State<FormBuyPage> {
                                 textColor: Colors.white);
                           }
                         },
-                        child: Text("Buy", style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.bold, fontSize: 14, color: Colors.white),))
+                        child: Text(
+                          "Buy",
+                          style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                              color: Colors.white),
+                        ))
                   ],
                 ),
               ),
