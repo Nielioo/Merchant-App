@@ -19,9 +19,11 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         primaryColor: primaryColor,
       ),
-      home: HomePage(
-        item: items.first,
-      ),
+      initialRoute: "/",
+      routes: {
+        "/": (context) => HomePage(item: items.first,),
+        FormBuyPage.routeName: (context) => FormBuyPage(),
+      },
     );
   }
 }

@@ -157,6 +157,12 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, FormBuyPage.routeName);
+        },
+        child: Icon(Icons.shopping_cart),
+      ),
     );
   }
 }
