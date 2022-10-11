@@ -15,9 +15,10 @@ class _FormBuyPageState extends State<FormBuyPage> {
   }
 
   final _formKey = GlobalKey<FormState>();
+  final ctrlName = TextEditingController();
   final ctrlEmail = TextEditingController();
-  final ctrlPass = TextEditingController();
-  bool isHide = true;
+  final ctrlAddress = TextEditingController();
+  final ctrlQuantity = TextEditingController();
 
   @override
   void dispose() {
@@ -29,7 +30,7 @@ class _FormBuyPageState extends State<FormBuyPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Buy Item",
+          "Purchase Item",
           style: TextStyle(
               fontFamily: "Nunito",
               fontWeight: FontWeight.bold,
@@ -38,6 +39,7 @@ class _FormBuyPageState extends State<FormBuyPage> {
       ),
       body: Container(
         child: SingleChildScrollView(
+          padding: EdgeInsets.all(16),
           child: Column(
             children: [
               //  startt
@@ -46,18 +48,19 @@ class _FormBuyPageState extends State<FormBuyPage> {
                 child: Column(
                   children: [
                     TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      decoration:
-                          // InputDecoration.collapsed(hintText: "Email Address"),
-                          InputDecoration(
-                        labelText: "Email",
-                        prefixIcon: Icon(Icons.mail),
+                      keyboardType: TextInputType.name,
+                      decoration: InputDecoration(
+                        labelText: "Name",
+                        border: OutlineInputBorder(),
+                        hintText: "Enter your name here",
+                        prefixIcon: Icon(Icons.person),
                       ),
-                      controller: ctrlEmail,
+                      controller: ctrlName,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
-                        return !EmailValidator.validate(value.toString())
-                            ? "Email tidak valid"
+                        return (value.toString() == null ||
+                                value.toString().isEmpty)
+                            ? "Name field cannot be empty"
                             : null;
                       },
                     ),
@@ -66,27 +69,58 @@ class _FormBuyPageState extends State<FormBuyPage> {
                     ),
                     TextFormField(
                       keyboardType: TextInputType.emailAddress,
-                      decoration:
-                          // InputDecoration.collapsed(hintText: "Email Address"),
-                          InputDecoration(
-                              labelText: "Password",
-                              prefixIcon: Icon(Icons.lock),
-                              suffixIcon: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    isHide = !isHide;
-                                  });
-                                },
-                                child: (isHide)
-                                    ? Icon(Icons.visibility)
-                                    : Icon(Icons.visibility_off),
-                              )),
-                      controller: ctrlPass,
+                      decoration: InputDecoration(
+                        labelText: "Email Address",
+                        border: OutlineInputBorder(),
+                        hintText: "Enter your email address here",
+                        prefixIcon: Icon(Icons.mail),
+                      ),
+                      controller: ctrlEmail,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
-                        // return value.toString().length < 8
-                        //     ? "Password at least 8 characters"
-                        //     : null;
+                        return !EmailValidator.validate(value.toString())
+                            ? "Invalid email"
+                            : null;
+                      },
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.streetAddress,
+                      decoration: InputDecoration(
+                        labelText: "Shipping Address",
+                        border: OutlineInputBorder(),
+                        hintText: "Enter your shipping address here",
+                        prefixIcon: Icon(Icons.house),
+                      ),
+                      controller: ctrlAddress,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        return (value.toString() == null ||
+                                value.toString().isEmpty)
+                            ? "Shipping address field cannot be empty"
+                            : null;
+                      },
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelText: "Item Quantity",
+                        border: OutlineInputBorder(),
+                        hintText: "Enter item quantity you wanna buy",
+                        prefixIcon: Icon(Icons.table_rows),
+                      ),
+                      controller: ctrlQuantity,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        return (value.toString() == null ||
+                                value.toString().isEmpty)
+                            ? "Item quantity field cannot be empty"
+                            : null;
                       },
                     ),
                     SizedBox(
@@ -98,8 +132,16 @@ class _FormBuyPageState extends State<FormBuyPage> {
                             showDialog<String>(
                                 context: context,
                                 builder: (BuildContext context) => AlertDialog(
-                                      title: const Text('AlertDialog Title'),
-                                      content: Text(ctrlEmail.text.toString()),
+                                      title:
+                                          const Text('Purchase Confirmation',style: TextStyle(fontWeight: FontWeight.bold),),
+                                      content: Text("Name: " +
+                                          ctrlName.text.toString() +
+                                          "\nEmail: " +
+                                          ctrlEmail.text.toString() +
+                                          "\n\n" +
+                                          ctrlQuantity.text.toString() +
+                                          " item(s) will be send to " +
+                                          ctrlAddress.text.toString()),
                                       actions: <Widget>[
                                         TextButton(
                                           onPressed: () =>
@@ -109,13 +151,12 @@ class _FormBuyPageState extends State<FormBuyPage> {
                                         TextButton(
                                           onPressed: () {
                                             Fluttertoast.showToast(
-                                                msg: "email:" +
-                                                    ctrlEmail.text.toString(),
+                                                msg: "Successful Purchase",
                                                 toastLength: Toast.LENGTH_SHORT,
                                                 fontSize: 14,
                                                 backgroundColor:
                                                     Colors.greenAccent,
-                                                textColor: Colors.white);
+                                                textColor: Colors.black);
                                             Navigator.pop(context, 'OK');
                                             Navigator.pop(context);
                                           },
@@ -123,7 +164,6 @@ class _FormBuyPageState extends State<FormBuyPage> {
                                         ),
                                       ],
                                     ));
-
                           } else {
                             Fluttertoast.showToast(
                                 msg: "Please fill all fields!",
