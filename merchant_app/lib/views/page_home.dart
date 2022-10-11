@@ -30,11 +30,11 @@ class _HomePageState extends State<HomePage> {
         height: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
               colors: [
-                Color(0xFF93FBF6),
-                Color(0xFFE9FDFC),
+                Color(0xFFCCB6FF),
+                Color(0xFFE0FFFC),
               ]),
         ),
         child: Column(

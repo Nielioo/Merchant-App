@@ -36,8 +36,20 @@ class _FormBuyPageState extends State<FormBuyPage> {
               fontWeight: FontWeight.bold,
               color: Colors.black),
         ),
+        backgroundColor: primaryColor,
       ),
       body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+              colors: [
+                Color(0xFFCCB6FF),
+                Color(0xFFE0FFFC),
+              ]),
+        ),
         child: SingleChildScrollView(
           padding: EdgeInsets.all(16),
           child: Column(
@@ -131,6 +143,7 @@ class _FormBuyPageState extends State<FormBuyPage> {
                     ),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                          primary: Color(0xFF00AAA6),
                           minimumSize: const Size.fromHeight(36),
                         ),
                         onPressed: () {
@@ -181,7 +194,7 @@ class _FormBuyPageState extends State<FormBuyPage> {
                                 textColor: Colors.white);
                           }
                         },
-                        child: Text("Buy"))
+                        child: Text("Buy", style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.bold, fontSize: 14, color: Colors.white),))
                   ],
                 ),
               ),
