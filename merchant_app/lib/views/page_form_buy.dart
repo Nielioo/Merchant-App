@@ -115,6 +115,9 @@ class _FormBuyPageState extends State<FormBuyPage> {
                         prefixIcon: Icon(Icons.table_rows),
                       ),
                       controller: ctrlQuantity,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                      ],
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
                         return (value.toString() == null ||
@@ -127,13 +130,19 @@ class _FormBuyPageState extends State<FormBuyPage> {
                       height: 16,
                     ),
                     ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size.fromHeight(36),
+                        ),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             showDialog<String>(
                                 context: context,
                                 builder: (BuildContext context) => AlertDialog(
-                                      title:
-                                          const Text('Purchase Confirmation',style: TextStyle(fontWeight: FontWeight.bold),),
+                                      title: const Text(
+                                        'Purchase Confirmation',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                       content: Text("Name: " +
                                           ctrlName.text.toString() +
                                           "\nEmail: " +
@@ -150,13 +159,12 @@ class _FormBuyPageState extends State<FormBuyPage> {
                                         ),
                                         TextButton(
                                           onPressed: () {
-                                            Fluttertoast.showToast(
-                                                msg: "Successful Purchase",
-                                                toastLength: Toast.LENGTH_SHORT,
-                                                fontSize: 14,
-                                                backgroundColor:
-                                                    Colors.greenAccent,
-                                                textColor: Colors.black);
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              const SnackBar(
+                                                  content: Text(
+                                                      'Item Successfuly Purchased')),
+                                            );
                                             Navigator.pop(context, 'OK');
                                             Navigator.pop(context);
                                           },
